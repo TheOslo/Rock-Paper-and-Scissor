@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Rock Paper Scissors</title>
+        <link rel="stylesheet" href="style.css"
+    </head>
+    <body>
+        <p class="heading">Rock Paper Scissors</p>
+        <button onclick="playGame('rock')" class="move-button"><img src="images/rock.png" class="image"></button>
+        <button onclick="playGame('paper')" class="move-button"><img src="images/paper.png" class="image"></button>
+        <button onclick="playGame('scissors')" class="move-button"><img src="images/scissors.png" class="image"></button>
+
+        <p class="js-result result"></p>
+        <p class="js-moves"></p>
+        <p class="js-score score"></p>
+
+        <button onclick="resetGame()" class="reset-button">Reset button</button>
+
+        <script src="script.js"></script>
+
+    </body>
+</html>
