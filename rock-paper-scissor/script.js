@@ -66,6 +66,25 @@
         document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
     }
 
+    let isAutoPlaying = false;
+    let intervalID;
+    
+    function autoPlay() {
+        if(!isAutoPlaying){
+            intervalID = setInterval(() => {
+                const playerMove = pickComputerMove();
+                playGame(playerMove);
+            }, 1000);
+            isAutoPlaying = true;
+            document.querySelector('.auto-play-button').innerHTML = 'Stop Playing';
+        }
+        else {
+            isAutoPlaying = false;
+            clearInterval(intervalID);
+            document.querySelector('.auto-play-button').innerHTML = 'Auto Play';
+        }
+    }
+
     function resetGame() {
         score.wins = 0;
         score.losses = 0;
@@ -80,10 +99,30 @@
             return 'rock';
         }
         else if (randomNumber < 2/3 && randomNumber >= 1/3){
-            return 'paper';
+        
         }
         else {
             return 'scissors';
         }
 
     }
+
+    document.querySelector('.js-rock-button').addEventListener('click', () => playGame('rock'));
+    document.querySelector('.js-paper-button').addEventListener('click', () => playGame('paper'));
+    document.querySelector('.js-scissors-button').addEventListener('click', () => playGame('scissors'));
+
+
+    document.body.addEventListener('keydown', (e) => {
+        if(e.key === 'r') {
+            playGame('rock');
+        }
+        else if(e.key === 'p') {
+            playGame('paper');
+        }
+        else if(e.key === 's') {
+            playGame('scissors');
+        }
+        else if(e.key === 'a') {
+            autoPlay();
+        }
+    });
